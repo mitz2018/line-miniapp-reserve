@@ -51,6 +51,7 @@ export default function ReservePage() {
     if (!idToken) {
     alert("LINEログインに問題があります（idTokenが取得できません）");
     return;
+    }
 
     // datetime-local → ISO(+09:00) に変換（超重要）
     const startISO = new Date(startAt + ":00+09:00").toISOString();
