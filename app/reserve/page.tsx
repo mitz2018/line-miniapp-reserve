@@ -57,7 +57,7 @@ export default function ReservePage() {
     const startISO = new Date(startAt + ":00+09:00").toISOString();
     const endISO = new Date(endAt + ":00+09:00").toISOString();
 
-    const res = await fetch("/api/bookings", {
+    const res = await fetch("/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
