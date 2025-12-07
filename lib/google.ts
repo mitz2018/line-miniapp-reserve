@@ -31,6 +31,9 @@ export async function getServiceCalendar() {
   const client = await auth.getClient();
 
   // 「サービスカレンダー用」クライアントとしてキャッシュ
-  serviceCalendarClient = google.calendar({ version: "v3", auth: client });
+  serviceCalendarClient = google.calendar({
+    version: "v3",
+    auth, // ← auth object を渡すのが正解
+  });
   return serviceCalendarClient;
 }
