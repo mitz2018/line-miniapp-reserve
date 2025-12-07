@@ -48,15 +48,22 @@ export default function ReservePage() {
     }
 
     const idToken = liff.getIDToken();
+    if (!idToken) {
+    alert("LINEログインに問題があります（idTokenが取得できません）");
+    return;
 
-    const res = await fetch("/bookings", {
+    // datetime-local → ISO(+09:00) に変換（超重要）
+    const startISO = new Date(startAt + ":00+09:00").toISOString();
+    const endISO = new Date(endAt + ":00+09:00").toISOString();
+
+    const res = await fetch("/api/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         idToken,
         serviceType,
-        startAt,
-        endAt,
+      startAt: startISO,
+      endAt: endISO,
       }),
     });
 
